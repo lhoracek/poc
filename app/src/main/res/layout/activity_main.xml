@@ -1,17 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
             name="listenerDialog"
-            type="android.view.View.OnClickListener"/>
+            type="android.view.View.OnClickListener" />
 
 
         <variable
             name="listenerActivity"
-            type="android.view.View.OnClickListener"/>
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="listenerVisibility"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="activity"
+            type="cz.lhoracek.lifecyclepoc.MainActivity" />
+
+        <variable
+            name="hours"
+            type="int" />
+
+        <variable
+            name="mins"
+            type="int" />
+
+        <import type="android.view.View" />
     </data>
 
     <LinearLayout
@@ -28,19 +47,59 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"/>
+            android:text="Hello World!" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/formatter(hours, mins)}" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{listenerActivity}"
-            android:text="Activity"/>
+            android:text="Activity" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="@{listenerDialog}"
-            android:text="Dialog"/>
+            android:text="Dialog" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{listenerVisibility}"
+            android:text="Visibility" />
+
+        <android.support.percent.PercentFrameLayout
+            android:id="@+id/frame"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:animateLayoutChanges="true">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#55FF33" />
+
+            <View
+                android:layout_gravity="center"
+                android:background="@color/colorPrimaryDark"
+                android:visibility="@{activity.visible ? View.GONE : View.VISIBLE}"
+                app:layout_heightPercent="50%"
+                app:layout_widthPercent="50%" />
+
+            <View
+                android:layout_gravity="center"
+                android:background="@color/colorAccent"
+                android:visibility="@{activity.visible ? View.VISIBLE : View.GONE}"
+                app:layout_heightPercent="50%"
+                app:layout_widthPercent="50%" />
+
+
+        </android.support.percent.PercentFrameLayout>
     </LinearLayout>
 </layout>
 

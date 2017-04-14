@@ -1,7 +1,9 @@
 package cz.lhoracek.lifecyclepoc;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.RecyclerView;
@@ -77,6 +79,13 @@ public class MyDialogFragment extends DialogFragment {
         super.onSaveInstanceState(outState);
         Log.d(TAG, "onSaveInstanceState");
 
+    }
+
+    @NonNull
+    @Override
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
+        Dialog dialog = super.onCreateDialog(savedInstanceState);
+        return dialog;
     }
 
     public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder>{
